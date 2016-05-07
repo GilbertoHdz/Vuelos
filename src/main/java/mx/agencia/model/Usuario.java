@@ -35,7 +35,7 @@ public class Usuario {
 	private String pais;
 	
 	@Column(name="EDAD")
-	private Integer Edad;
+	private Integer edad;
 	
 	@Column(name="TELEFONO")
 	private Integer telefono;
@@ -100,11 +100,11 @@ public class Usuario {
 	}
 
 	public Integer getEdad() {
-		return Edad;
+		return edad;
 	}
 
 	public void setEdad(Integer edad) {
-		Edad = edad;
+		this.edad = edad;
 	}
 
 	public Integer getTelefono() {
