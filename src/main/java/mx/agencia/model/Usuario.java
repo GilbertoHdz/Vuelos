@@ -46,7 +46,7 @@ public class Usuario {
 	@Column(name="USUARIO")
 	private String usuario;
 	
-	@Column(name="RO")
+	@Column(name="ROL")
 	private Integer rol;
 	
 	@Column(name="PASSWORD")
