@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+              http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+              http://www.springframework.org/schema/context
+              http://www.springframework.org/schema/context/spring-context-3.0.xsd
+              http://www.springframework.org/schema/tx
+              http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+              http://www.springframework.org/schema/mvc
+              http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+              
+              
+<!--  Escanea los paquetes indicados y registra las clases anotadas como -->
+<!--  @Component @Service, @Repository, @Controller como beans en este contexto -->
+  <context:component-scan base-package="mx.agencia.dao"></context:component-scan>
+  
+<!--  DataSource usando apache commons dbcp configurador para conectarse con Oracle -->
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+    <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+    <property name="username" value="javamvc"></property>
+    <property name="password" value="javamvc"></property>
+  </bean>
+  
+<!--  Hibernate Session Factory -->
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"></property>
+    <property name="packagesToScan">
+      <value>mx.agencia.model</value>
+    </property>
+    <property name="hibernateProperties">
+      <props>
+        <prop key="hibernate.format_sql">true</prop>
+        <prop key="hibernate.show_sql">true</prop>
+      </props>
+    </property>
+  </bean>
+  <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+<!--  Activa el manejo de transacciones usando anotaciones -->
+  <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

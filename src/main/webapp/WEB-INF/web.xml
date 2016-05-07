@@ -6,6 +6,17 @@
                http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
      version="2.5">
 
+
+<!--   Listener que es invocado cuando incia la aplicacion, y se crea y se ejecuta -->
+<!--    antes que  que cualquier servlet  y su tarea es iniciar el root-context -->
+    <listener>
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+<!--    Parametro utilizado para cargar el archivo en la ruta indicada -->
+    <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/root-context.xml</param-value>
+    </context-param>
       
 <!--  Declaracion del servlet de Spring      -->
   <servlet>
