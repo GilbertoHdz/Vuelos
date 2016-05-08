@@ -43,14 +43,14 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/usuario/update/{id}", method=RequestMethod.GET)
-	String showEditarProductoForm(@PathVariable Integer id, Model model){
+	String showEditarUsuarioForm(@PathVariable Integer id, Model model){
 		Usuario user=_usuarioDao.findById(id);
 		model.addAttribute("usuario", user);
 		return "editar-usuario";
 	}
 	
 	@RequestMapping(value="/usuario/update/{id}", method=RequestMethod.POST)
-	String processEditarProductoForm(Usuario u, Errors e){
+	String processEditarUsuarioForm(Usuario u, Errors e){
 		if(e.hasErrors()){
 			return "editar-usuario";
 		}
@@ -59,15 +59,15 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/usuario/delete/{id}", method=RequestMethod.GET)
-	String showEliminarProducto(@PathVariable Integer id, Model model){
+	String showEliminarUsuario(@PathVariable Integer id, Model model){
 		Usuario user=_usuarioDao.findById(id);
-		model.addAttribute("usuario", user);
+		model.addAttribute("u", user);
 		return "eliminar-usuario";
 	}
 	
 
 	@RequestMapping(value="/usuario/delete/{id}", method=RequestMethod.POST)
-	String processEliminarProducto(@PathVariable Integer id){
+	String processEliminarUsuario(@PathVariable Integer id){
 		Usuario user=_usuarioDao.findById(id);
 		_usuarioDao.delete(user);
 		return "redirect:/usuario/list";
