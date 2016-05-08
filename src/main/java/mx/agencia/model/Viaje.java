@@ -36,7 +36,7 @@ public class Viaje {
 	private Integer cupoMaximo;
 	
 	@Column(name="DISPONIBILIDAD")
-	private Integer Disponibilidad;
+	private Integer disponibilidad;
 	
 	@Column(name="FECHA_INCIO")
 	private Date fechaInicio;
@@ -99,11 +99,11 @@ public class Viaje {
 	}
 
 	public Integer getDisponibilidad() {
-		return Disponibilidad;
+		return disponibilidad;
 	}
 
 	public void setDisponibilidad(Integer disponibilidad) {
-		Disponibilidad = disponibilidad;
+		this.disponibilidad = disponibilidad;
 	}
 
 	public Date getFechaInicio() {
