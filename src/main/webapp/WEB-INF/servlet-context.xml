@@ -18,6 +18,9 @@
 <!--  Realiza las configuraciones necesarias para el funcionamiento de las clases @Controller -->
   <mvc:annotation-driven/>
   
+<!--   Carga de js, css, img, 3rt party, etc.. -->
+  <mvc:resources mapping="/resources/**" location="/resources/" />
+  
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="prefix">
       <value>/WEB-INF/views/</value>
