@@ -52,6 +52,7 @@
   
 <!--   MORE PAGE OF ERRORS   -->
 <!-- http://stackoverflow.com/questions/7066192/how-to-specify-the-default-error-page-in-web-xml -->
+<!-- http://www.onehippo.org/library/concepts/error-pages-and-error-handling/1.-handling-error-codes-and-exceptions-by-the-web.xml.html -->
   <error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/views/components/404.jsp</location>
