@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+                      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+										  http://www.springframework.org/schema/security
+										  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+  <http auto-config="true" use-expressions="true">
+    <intercept-url pattern="/" access="permitAll" />
+    <intercept-url pattern="/home" access="permitAll" />
+    
+    <intercept-url pattern="/usuario/list" access="hasRole('1')" />
+    <intercept-url pattern="/usuario/add" access="hasRole('2') or hasRole('1')" />
+    <intercept-url pattern="/usuario/update/**" access="hasRole('2') or hasRole('1')" />
+    <intercept-url pattern="/usuario/delete/**" access="hasRole('1')" />
+    
+    <intercept-url pattern="/viaje/list" access="hasRole('2') or hasRole('1')" />
+    <intercept-url pattern="/viaje/update/**" access="hasRole('2') or hasRole('1')" />
+    <intercept-url pattern="/viaje/delete/**" access="hasRole('1')" />
+    
+    <!-- access denied page -->
+    <access-denied-handler error-page="/403" />
+    
+    <form-login 
+        login-page="/login" 
+        default-target-url="/home" 
+        authentication-failure-url="/login?error" 
+        username-parameter="j_username"
+        password-parameter="j_password" />
+        
+    <logout logout-success-url="/login?logout"  />
+    <!-- Activar csrf(Cross-site Request forgery) protection -->
+    <csrf/>
+  </http>
+
+  <authentication-manager>
+    <authentication-provider>
+      <!-- 
+      <user-service>
+        <user name="admin" password="123" authorities="1" /> ROLE_ADMIN 
+        <user name="user" password="123" authorities="2" />  ROLE_USER 
+      </user-service> 
+      -->
+      
+<!--  SOLUCION: http://www.coderanch.com/t/603564/Spring/Spring-security -->
+<!--   error: [DB2, Derby, H2, HSQL...]: se agrega esto-> 1 as enabled  -->
+      <jdbc-user-service 
+          data-source-ref="dataSource" 
+          authorities-by-username-query="SELECT usuario, rol FROM usuario WHERE usuario = ?"
+          users-by-username-query="SELECT usuario, password, 1 as enabled FROM usuario WHERE usuario = ?"
+       />
+    </authentication-provider>
+  </authentication-manager>
+
+
+</beans:beans>
