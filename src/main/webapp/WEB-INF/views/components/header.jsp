@@ -11,7 +11,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <c:url value="/resources/css/bootstrap.css" var="bootstrapCss"/>
-<c:url value="/resources/css/bootstrap-theme.css" var="bootstrapThemeCss" />
 <c:url value="/resources/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" var="modernizrJs" />
 
 <link rel="stylesheet" href="${bootstrapCss}">
@@ -22,7 +21,6 @@
   }
 </style>
 
-<link rel="stylesheet" href="${bootstrapThemeCss}">
 <link rel="stylesheet" href="${pageCss}" />
 <script src="${modernizrJs}"></script>
 

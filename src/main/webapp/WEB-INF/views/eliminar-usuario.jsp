@@ -11,8 +11,8 @@
 </head>
 <body>
 
-  <h1>Eliminar Viaje</h1>
-  <p>¿Estas seguro que quieres eliminar este viaje?</p>
+  <h1>Eliminar Usuario</h1>
+  <p>¿Estas seguro que quieres eliminar este usuario?</p>
   
   <table>
     <tr>
@@ -55,10 +55,12 @@
   
   <c:url value="/usuario/delete/${u.id}" var="deleteUrl"/>
   
-  <form action="${deleteUrl }" method="post">
+  <form action="${deleteUrl }" method="post" >
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <button type="submit">Eliminar</button>
     <c:url value="/usuario/list" var="cancelarUrl"/>
     <a href="${cancelarUrl }">Cancelar</a>
   </form>
+  
 </body>
 </html>
