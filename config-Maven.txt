@@ -1,0 +1,31 @@
+http://mvnrepository.com/artifact/com.oracle/ojdbc14/10.2.0.4.0
+
+JRE -> BuildPath : Cambiar la versión del JRE
+Maven->Maven proyect->Use default Workspace->maven-archetype-quickstart
+	-> groupId(NombreEmpresa, dominio empresa al revez): mx.com.ceteq
+	   ArtifactId(NombreProyecto): JDBC -> Finish
+
+JAR: Proyecto java compilado, como .exe
+WAR: Conjunto de muchos .jar
+
+el el MVNRepository no existe la version de JDBC de oracle, así que 
+se descarga directamente de la pagina de oracle.
+crear una carpeta lib en el workspace y pegar los .jar
+EJ: D:\DevOps\Java\eclipse\lib
+
+--POM.MX--
+<dependency>
+    <groupId>com.oracle</groupId>
+	<artifactId>ojdbc6</artifactId>
+	<version>11.2.0</version>
+</dependency>
+--SAVE y marcara error.
+
+con un comando maven se jala el jar desde donde le digamos
+install:install-file -Dfile=lib/ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar
+
+JDB->Run As->Run Configuration->Maven Build->Browse Workspace->Selecc el proyecto maven->${workspace_loc:/[borraraquí]}
+->Goals: nstall:install-file -Dfile=lib/ojdbc6.jar ... -> Run (se deben aparecer puros infos, ningun error)
+
+refrescar el pom.xml y guardar, para que se quite el error.
+en maven dependencies aparecera el ojdbc6
